@@ -1,26 +1,27 @@
-#ifndef TP2_GRAFOS___GRAFO_H
-#define TP2_GRAFOS___GRAFO_H
+#ifndef TP2_2___GRAFO_H
+#define TP2_2___GRAFO_H
+
 #include <iostream> 
 #include <list> 
-#include <iterator> 
-using namespace std;
+using namespace std; 
 
-class Graph 
+class Grafo 
 { 
-    int V;    
-    list<int>*adj; 
-   // int conexo;
-    int DFS(int v, bool visited[]); 
+  int tam;   
+  list<int> *adj;   //lista de adjecencia 
 public: 
-    Graph(int V);  
-    int DFS2(int v, bool visited[]); 
-    void addEdge(int v, int w); 
-    void rmvEdge(int v,int u);
+//contruir grafo
+  Grafo(int tamanho); 
+  void add(int u, int v);
+  void rmv(int u, int v); 
+//saber se o grafo é euleriano
     int ePar(int grau[],int  nVertices);
-    int eEuleriano(int grau[], int nVertices,Graph g);
+    int eEuleriano(int grau[], int nVertices);
     int eConexo(int grau[],int n);
-    void printEuler(int nVertices,int grau[]); 
-    void printEulerUtil(int s,int nVertices); 
-    bool eValido(int u, int v,int nVertices); 
-};
+//imprimir caminho euleriano
+  void printEulerTour(); 
+  void printEulerUtil(int s);  
+  int DFSCont(int v, bool visited[]); 
+  bool eValido(int u, int v); 
+}; 
 #endif

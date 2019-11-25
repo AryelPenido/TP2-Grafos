@@ -3,44 +3,52 @@
 #include<list>
 #include<vector>
 #include "grafo.hpp"
+
+
+using namespace std;
+
 int main(){
-    using namespace std;
-    FILE *arq = NULL;
+    
+    FILE *arq;
+    Grafo *g;
     char arquivo[30];
-    int n, linha,coluna,nlinhas = 1,euleriano = 0;
+    int vertices;
+    int v1,v2;
+
+
     cout<<"entre com nome do arquivo: ";
     cin>>arquivo;
     arq = fopen(arquivo,"r");
     if(arq == NULL)
         printf("ERRO ao abrir o arquivo\n");
-
-    fscanf(arq,"%d",&n);
-  
-    Graph g(n*n);
-    int grauVertice[n];
-  
-    for(int i = 0; i < n; i++){
-        grauVertice[i] = 0;
+    fscanf(arq,"%d",&vertices);
+    g = new Grafo(vertices);
+    int graus[vertices];
+    for(int i = 0; i< vertices;i++){
+        graus[i] = 0;
     }
- 
+    
+   // cout<<"Foi graus";
     while(!feof(arq)){
-        fscanf(arq,"%d %d ",&linha,&coluna);
-        grauVertice[linha-1]++;
-        grauVertice[coluna-1]++;
-        g.addEdge(linha,coluna);
+         fscanf(arq,"%d %d ",&v1,&v2);
+         g->add(v1-1,v2-1);
+         graus[v1-1]++;
+         graus[v2-1]++;
     }
-   
- 
-  euleriano = g.eEuleriano(grauVertice,n,g);
-  if(euleriano){
-      cout<<"Aqui\n";
-      g.printEuler(n,grauVertice);
-  }
+   // int x = g->ePar(graus,vertices);
+   int x = g->eEuleriano(graus,vertices);
+    if(x){
+        g->printEulerTour();
+    }
 
-
-
-return 0 ;
-
+    
+    
+    
+    
+    
+    
+    
+    
+    return 0;
 
 }
-
