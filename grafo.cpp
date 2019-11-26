@@ -35,7 +35,7 @@ int Grafo::ePar(int grau[],int  nVertices){
     if(cont == nVertices)
         return 1; 
     else{
-        cout<<"Tem vertice de grau impar\n";
+        cout<<"Tem vertice de grau impar!\n";
         return 0;
     }
 }
@@ -59,17 +59,17 @@ int Grafo:: eEuleriano(int grau[], int nVertices){
     if(x){
         y = eConexo(grau,nVertices); 
         if(y){
-            cout<<"É Euleriano\n";
+            cout<<"Eh Euleriano!\n";
             return 1;
         }
         else
         {
-            cout << "não é Euleriano\n";
+            cout << "Nao eh Euleriano!\n";
             return 0;
         }
     }
     else{
-        cout << "não é Euleriano\n";
+        cout << "Nao eh Euleriano!\n";
         return 0;
     }
     
